@@ -1,0 +1,34 @@
+identity:
+  name: "querit"
+  author: "querit-ai"
+  label:
+    en_US: "QueritSearchPlugin"
+    zh_Hans: "QueritSearchPlugin"
+    pt_BR: "QueritSearchPlugin"
+    ja_JP: "QueritSearchPlugin"
+description:
+  human:
+    en_US: "Core API: Based on querit.ai's Search API, call the retrieval endpoint (e.g., POST https://api.querit.ai/v1/search) via HTTP/JSON with query parameters like search query and result count in the request body to obtain a structured search result list."
+    zh_Hans: "核心 API：基于querit.ai 的 Search API，可通过 HTTP/JSON 调用检索端点（如 POST https://api.querit.ai/v1/search），并在请求体中包含查询语句、返回条数等参数以获取结构化搜索结果列表。"
+    pt_BR: "API principal: Baseada na Search API do querit.ai, chame o endpoint de recuperação (ex: POST https://api.querit.ai/v1/search) via HTTP/JSON com parâmetros como consulta de pesquisa e contagem de resultados no corpo da requisição para obter uma lista estruturada de resultados de pesquisa."
+    ja_JP: "コアAPI：querit.aiのSearch APIに基づき、HTTP/JSONで検索エンドポイント（例：POST https://api.querit.ai/v1/search）を呼び出し、リクエストボディに検索クエリや返却件数などのパラメータを含めて、構造化された検索結果リストを取得します。"
+  llm: "Core API: Use querit.ai's Search API via HTTP/JSON POST to https://api.querit.ai/v1/search with search parameters to retrieve structured search results."
+parameters:
+  - name: query
+    type: string
+    required: true
+    label:
+      en_US: "AI Search Query"
+      zh_Hans: "AI智能搜索内容"
+      pt_BR: "Consulta de Pesquisa IA"
+      ja_JP: "AIインテリジェント検索クエリ"
+    human_description:
+      en_US: "The search query for Querit's AI-powered semantic search engine, which understands natural language intent and returns relevant URLs, images and structured data."
+      zh_Hans: "Querit AI语义搜索引擎的搜索内容，可理解自然语言意图并返回相关URL、图片和结构化数据。"
+      pt_BR: "A consulta de pesquisa para o mecanismo de busca semântica com IA do Querit, que compreende a intenção da linguagem natural e retorna URLs, imagens e dados estruturados relevantes."
+      ja_JP: "QueritのAIセマンティック検索エンジン用の検索クエリ。自然言語の意図を理解し、関連するURL、画像、構造化データを返します。"
+    llm_description: "The search query input for Querit's AI-powered semantic search engine that returns relevant URLs, images, and structured search results."
+    form: llm
+extra:
+  python:
+    source: tools/dify_querit.py
