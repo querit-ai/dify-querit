@@ -1,0 +1,92 @@
+identity:
+  author: "querit-ai"
+  name: "querit"
+  label:
+    en_US: "Querit Search Plugin"
+    zh_Hans: "Querit Search Plugin"
+    pt_BR: "Querit Search Plugin"
+    ja_JP: "Querit Search Plugin"
+  tags:
+  - search
+  description:
+    en_US: |
+      This plugin integrates querit.ai real-time search and retrieval services into Coze platform through standardized APIs, allowing agents to query external knowledge sources with natural language and obtain structured search results.
+      querit.ai provides global-scale multilingual indexing and semantic understanding engine for more reliable and precise results, with integrated filtering and ranking strategies to enhance LLM context support.
+    ja_JP: |
+      このプラグインはquerit.aiのリアルタイム検索・検索サービスをCozeプラットフォームに標準化APIで統合し、エージェントが自然言語で外部知識源をクエリし構造化検索結果を取得できるようにします。
+      querit.aiはグローバル規模の多言語インデックスとセマンティック理解エンジンを提供し、より信頼性の高い正確な結果を提供し、LLMコンテキストサポートを強化する統合フィルタリングおよびランキング戦略を備えています。
+    zh_Hans: |
+      该插件封装了 querit.ai 的实时搜索与检索服务，将其能力以标准化的 API 集成到 Coze 平台中，允许智能体通过自然语言查询外部知识源并获取结构化搜索结果。
+      querit.ai 提供全球大规模多语言索引和语义理解引擎，使搜索结果更可靠、精准，并集成多种过滤与排序策略，增强大模型检索时的上下文支撑。
+    pt_BR: |
+      Este plugin integra os serviços de busca e recuperação em tempo real do querit.ai na plataforma Coze por meio de APIs padronizadas, permitindo que agentes consultem fontes de conhecimento externas com linguagem natural e obtenham resultados de pesquisa estruturados.
+      querit.ai fornece indexação multilíngue em escala global e mecanismo de compreensão semântica para resultados mais confiáveis e precisos, com estratégias integradas de filtragem e classificação para aprimorar o suporte de contexto LLM.
+  icon: "icon.svg"
+credentials_for_provider: #Add credentials_for_provider field
+  querit_api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: Querit API key
+      zh_Hans: Querit API key
+      pt_BR: Chave da API do Querit
+      ja_JP: Querit API キー
+    placeholder:
+      en_US: Please input your Querit API key
+      zh_Hans: 请输入你的 Querit API key
+      pt_BR: Insira sua chave da API do Querit
+      ja_JP: Querit API キーを入力してください
+    help:
+      en_US: Get your Querit API key from Querit
+      zh_Hans: 从 Querit 获取你的 API key
+      pt_BR: Obtenha sua chave da API do Querit no Querit
+      ja_JP: QueritでAPIキーを取得してください
+    url: https://www.querit.ai/en/dashboard/api-keys
+
+#########################################################################################
+# If you want to support OAuth, you can uncomment the following code.
+#########################################################################################
+# oauth_schema:
+#   client_schema:
+#     - name: "client_id"
+#       type: "secret-input"
+#       required: true
+#       url: https://example.com/oauth/authorize
+#       placeholder:
+#         en_US: "Please input your Client ID"
+#         zh_Hans: "请输入你的 Client ID"
+#         pt_BR: "Insira seu Client ID"
+#       help:
+#         en_US: "Client ID is used to authenticate requests to the example.com API."
+#         zh_Hans: "Client ID 用于认证请求到 example.com API。"
+#         pt_BR: "Client ID é usado para autenticar solicitações à API do example.com."
+#       label:
+#         zh_Hans: "Client ID"
+#         en_US: "Client ID"
+#     - name: "client_secret"
+#       type: "secret-input"
+#       required: true
+#       url: https://example.com/oauth/authorize
+#       placeholder:
+#         en_US: "Please input your Client Secret"
+#         zh_Hans: "请输入你的 Client Secret"
+#         pt_BR: "Insira seu Client Secret"
+#       help:
+#         en_US: "Client Secret is used to authenticate requests to the example.com API."
+#         zh_Hans: "Client Secret 用于认证请求到 example.com API。"
+#         pt_BR: "Client Secret é usado para autenticar solicitações à API do example.com."
+#       label:
+#         zh_Hans: "Client Secret"
+#         en_US: "Client Secret"
+#   credentials_schema:
+#     - name: "access_token"
+#       type: "secret-input"
+#       label:
+#         zh_Hans: "Access Token"
+#         en_US: "Access Token"
+
+tools:
+  - tools/dify_querit.yaml
+extra:
+  python:
+    source: provider/dify_querit.py

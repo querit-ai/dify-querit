@@ -1,0 +1,52 @@
+version: 0.0.1
+type: plugin
+author: querit-ai
+name: querit
+label:
+  en_US: "Querit Search Plugin"
+  ja_JP: "Querit Search Plugin"
+  zh_Hans: "Querit Search Plugin"
+  pt_BR: "Querit Search Plugin"
+description:
+  en_US: |
+    This plugin integrates querit.ai real-time search and retrieval services into Coze platform through standardized APIs, allowing agents to query external knowledge sources with natural language and obtain structured search results.
+    querit.ai provides global-scale multilingual indexing and semantic understanding engine for more reliable and precise results, with integrated filtering and ranking strategies to enhance LLM context support.
+  ja_JP: |
+    このプラグインはquerit.aiのリアルタイム検索・検索サービスをCozeプラットフォームに標準化APIで統合し、エージェントが自然言語で外部知識源をクエリし構造化検索結果を取得できるようにします。
+    querit.aiはグローバル規模の多言語インデックスとセマンティック理解エンジンを提供し、より信頼性の高い正確な結果を提供し、LLMコンテキストサポートを強化する統合フィルタリングおよびランキング戦略を備えています。
+  zh_Hans: |
+    该插件封装了 querit.ai 的实时搜索与检索服务，将其能力以标准化的 API 集成到 Coze 平台中，允许智能体通过自然语言查询外部知识源并获取结构化搜索结果。
+    querit.ai 提供全球大规模多语言索引和语义理解引擎，使搜索结果更可靠、精准，并集成多种过滤与排序策略，增强大模型检索时的上下文支撑。
+  pt_BR: |
+    Este plugin integra os serviços de busca e recuperação em tempo real do querit.ai na plataforma Coze por meio de APIs padronizadas, permitindo que agentes consultem fontes de conhecimento externas com linguagem natural e obtenham resultados de pesquisa estruturados.
+    querit.ai fornece indexação multilíngue em escala global e mecanismo de compreensão semântica para resultados mais confiáveis e precisos, com estratégias integradas de filtragem e classificação para aprimorar o suporte de contexto LLM.
+icon: icon.svg
+icon_dark: icon-dark.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+    endpoint:
+      enabled: true
+    app:
+      enabled: true
+    storage:
+      enabled: true
+      size: 1048576
+plugins:
+  tools:
+    - provider/dify_querit.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+created_at: 2026-03-02T19:15:06.133856+08:00
+privacy: PRIVACY.md
+repo: https://github.com/querit-ai/dify-querit
+verified: false
