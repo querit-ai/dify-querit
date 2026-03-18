@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/license-MIT-orange)](LICENSE)
 
 **Author:** querit-ai
-**Version:** 0.0.1
+**Version:** 0.0.2
 **Type:** Dify Tool Plugin
 
 ---
