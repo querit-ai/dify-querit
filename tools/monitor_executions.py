@@ -3,10 +3,10 @@ from typing import Any
 
 from dify_plugin.entities.tool import ToolInvokeMessage
 
-from tools.monitor_base import QueritMonitorTool
+from tools import monitor_base
 
 
-class MonitorExecutionsTool(QueritMonitorTool):
+class MonitorExecutionsTool(monitor_base.QueritMonitorTool):
     """List a monitor's execution records (metadata only, no search results)."""
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage, None, None]:

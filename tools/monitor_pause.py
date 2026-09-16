@@ -3,10 +3,10 @@ from typing import Any
 
 from dify_plugin.entities.tool import ToolInvokeMessage
 
-from tools.monitor_base import QueritMonitorTool
+from tools import monitor_base
 
 
-class MonitorPauseTool(QueritMonitorTool):
+class MonitorPauseTool(monitor_base.QueritMonitorTool):
     """Pause a monitor. While paused it does not run and consumes no token."""
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage, None, None]:

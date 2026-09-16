@@ -3,10 +3,10 @@ from typing import Any
 
 from dify_plugin.entities.tool import ToolInvokeMessage
 
-from tools.monitor_base import QueritMonitorTool
+from tools import monitor_base
 
 
-class MonitorUpdateTool(QueritMonitorTool):
+class MonitorUpdateTool(monitor_base.QueritMonitorTool):
     """Update a monitor. At least one of name / period / query must be provided.
 
     Note: ``search`` is replaced as a whole object by the API, not merged. When

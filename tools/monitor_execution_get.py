@@ -3,10 +3,10 @@ from typing import Any
 
 from dify_plugin.entities.tool import ToolInvokeMessage
 
-from tools.monitor_base import QueritMonitorTool
+from tools import monitor_base
 
 
-class MonitorExecutionGetTool(QueritMonitorTool):
+class MonitorExecutionGetTool(monitor_base.QueritMonitorTool):
     """Get the details of a single execution, including its result events."""
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage, None, None]:

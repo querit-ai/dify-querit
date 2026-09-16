@@ -3,10 +3,10 @@ from typing import Any
 
 from dify_plugin.entities.tool import ToolInvokeMessage
 
-from tools.monitor_base import QueritMonitorTool
+from tools import monitor_base
 
 
-class MonitorGetTool(QueritMonitorTool):
+class MonitorGetTool(monitor_base.QueritMonitorTool):
     """Get the full details of a single monitor, including its search config."""
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage, None, None]:

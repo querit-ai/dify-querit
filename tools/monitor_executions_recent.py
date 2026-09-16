@@ -3,10 +3,10 @@ from typing import Any
 
 from dify_plugin.entities.tool import ToolInvokeMessage
 
-from tools.monitor_base import QueritMonitorTool
+from tools import monitor_base
 
 
-class MonitorExecutionsRecentTool(QueritMonitorTool):
+class MonitorExecutionsRecentTool(monitor_base.QueritMonitorTool):
     """Fetch the most recent executions together with their result content.
 
     This is the main endpoint for retrieving results; the new results of each

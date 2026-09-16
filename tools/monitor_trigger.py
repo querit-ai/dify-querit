@@ -3,10 +3,10 @@ from typing import Any
 
 from dify_plugin.entities.tool import ToolInvokeMessage
 
-from tools.monitor_base import QueritMonitorTool
+from tools import monitor_base
 
 
-class MonitorTriggerTool(QueritMonitorTool):
+class MonitorTriggerTool(monitor_base.QueritMonitorTool):
     """Manually run a monitor once, right now.
 
     This performs a real synchronous search: it takes a few seconds, consumes
