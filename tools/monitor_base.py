@@ -35,7 +35,7 @@ class QueritMonitorTool(Tool):
         """
         api_key = self.runtime.credentials.get("querit_api_key")
         if not api_key:
-            raise ValueError("Querit API key is not configured")
+            raise ValueError("Querit API key is not configured~")
 
         headers = {
             "Authorization": f"Bearer {api_key}",
