@@ -1,0 +1,28 @@
+identity:
+  name: "monitor_get"
+  author: "querit-ai"
+  label:
+    en_US: "Get Monitor"
+    zh_Hans: "获取监控详情"
+    pt_BR: "Obter Monitor"
+    ja_JP: "モニター詳細"
+description:
+  human:
+    en_US: "Get the full details of a single monitor, including its original search configuration."
+    zh_Hans: "获取单个监控的完整详情，包含其原始搜索配置。"
+  llm: "Get a single Querit monitor's full details by monitor_id, including the search config, created_at and updated_at."
+parameters:
+  - name: monitor_id
+    type: string
+    required: true
+    label:
+      en_US: "Monitor ID"
+      zh_Hans: "监控 ID"
+    human_description:
+      en_US: "The 32-character hexadecimal monitor id returned at creation."
+      zh_Hans: "创建时返回的 32 位十六进制监控 ID。"
+    llm_description: "The monitor id (32-character hexadecimal string)."
+    form: llm
+extra:
+  python:
+    source: tools/monitor_get.py

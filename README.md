@@ -1,11 +1,11 @@
 # Querit Search Plugin for Dify
 
-[![Version](https://img.shields.io/badge/version-0.0.1-blue)](https://github.com/querit-ai/dify-querit)
+[![Version](https://img.shields.io/badge/version-0.1.0-blue)](https://github.com/querit-ai/dify-querit)
 [![Python](https://img.shields.io/badge/python-3.12+-green)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-orange)](LICENSE)
 
 **Author:** querit-ai
-**Version:** 0.0.2
+**Version:** 0.1.0
 **Type:** Dify Tool Plugin
 
 ---
@@ -99,7 +99,50 @@ POST https://api.querit.ai/v1/search
 
 ---
 
-## Development
+## Search Monitors
+
+Beyond one-off search, the plugin exposes the **Querit Monitors** ecosystem. A
+Monitor turns a single search into a continuously running task: you register a
+query and an interval, the system runs it repeatedly on schedule, deduplicates
+against past runs automatically, and returns only what's new. This fits ongoing
+attention scenarios such as competitor activity, funding news, policy changes
+and new papers.
+
+### Monitor Tools
+
+- **Create Monitor** (`monitor_create`) — create a scheduled search monitor
+- **List Monitors** (`monitor_list`) — list monitors with status/name filters
+- **Get Monitor** (`monitor_get`) — full details including the search config
+- **Update Monitor** (`monitor_update`) — change name, schedule or search query
+- **Delete Monitor** (`monitor_delete`) — delete a monitor
+- **Pause / Resume Monitor** (`monitor_pause`, `monitor_resume`) — stop/start scheduled runs
+- **Trigger Monitor** (`monitor_trigger`) — run once immediately
+- **List Executions** (`monitor_executions`) — execution history (metadata only)
+- **Get Execution** (`monitor_execution_get`) — a single execution with its result events
+- **Recent Executions** (`monitor_executions_recent`) — recent executions with result content (main way to read new results)
+
+### Monitor API Endpoints
+
+```
+POST   https://api.querit.ai/v1/monitors                                  # create
+GET    https://api.querit.ai/v1/monitors                                  # list
+GET    https://api.querit.ai/v1/monitors/{monitor_id}                     # details
+POST   https://api.querit.ai/v1/monitors/{monitor_id}                     # update
+DELETE https://api.querit.ai/v1/monitors/{monitor_id}                     # delete
+POST   https://api.querit.ai/v1/monitors/{monitor_id}/pause               # pause
+POST   https://api.querit.ai/v1/monitors/{monitor_id}/resume              # resume
+POST   https://api.querit.ai/v1/monitors/{monitor_id}/trigger             # trigger once
+GET    https://api.querit.ai/v1/monitors/{monitor_id}/executions          # execution list
+GET    https://api.querit.ai/v1/monitors/{monitor_id}/executions/{id}     # execution details
+GET    https://api.querit.ai/v1/monitors/{monitor_id}/executions/recent   # recent executions
+```
+
+**Schedule interval:** hourly values `1h`–`24h`, or `1d` / `7d`. Minimum interval is 1 hour.
+
+**Notes:**
+- Creating a monitor does not run it immediately; the first run is at `next_trigger_at`. Use `monitor_trigger` to run it right away while testing.
+- `monitor_update` replaces the whole `search` object rather than merging fields.
+- A `success` execution with `new_results = 0` is normal — it means results came back but none were new.
 
 See [GUIDE.md](GUIDE.md) for detailed development documentation.
 
@@ -113,8 +156,20 @@ dify-querit/
 │   ├── dify_querit.py
 │   └── dify_querit.yaml
 ├── tools/                  # Tool definitions
-│   ├── dify_querit.py
-│   └── dify_querit.yaml
+│   ├── dify_querit.py      # Search tool
+│   ├── dify_querit.yaml
+│   ├── monitor_base.py     # Shared HTTP helper for monitor tools
+│   ├── monitor_create.py / .yaml
+│   ├── monitor_list.py / .yaml
+│   ├── monitor_get.py / .yaml
+│   ├── monitor_update.py / .yaml
+│   ├── monitor_delete.py / .yaml
+│   ├── monitor_pause.py / .yaml
+│   ├── monitor_resume.py / .yaml
+│   ├── monitor_trigger.py / .yaml
+│   ├── monitor_executions.py / .yaml
+│   ├── monitor_execution_get.py / .yaml
+│   └── monitor_executions_recent.py / .yaml
 ├── _assets/                # Icons and assets
 ├── README.md               # This file
 ├── GUIDE.md                # Development guide

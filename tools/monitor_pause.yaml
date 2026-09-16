@@ -1,0 +1,28 @@
+identity:
+  name: "monitor_pause"
+  author: "querit-ai"
+  label:
+    en_US: "Pause Monitor"
+    zh_Hans: "暂停监控"
+    pt_BR: "Pausar Monitor"
+    ja_JP: "モニター一時停止"
+description:
+  human:
+    en_US: "Pause a monitor. While paused it does not run on schedule and consumes no token."
+    zh_Hans: "暂停一个监控。暂停期间不会按计划执行，也不消耗额度。"
+  llm: "Pause a Querit monitor by monitor_id so it stops running on schedule."
+parameters:
+  - name: monitor_id
+    type: string
+    required: true
+    label:
+      en_US: "Monitor ID"
+      zh_Hans: "监控 ID"
+    human_description:
+      en_US: "The monitor id to pause."
+      zh_Hans: "要暂停的监控 ID。"
+    llm_description: "The monitor id (32-character hexadecimal string)."
+    form: llm
+extra:
+  python:
+    source: tools/monitor_pause.py

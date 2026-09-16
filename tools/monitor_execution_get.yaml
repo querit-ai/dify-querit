@@ -1,0 +1,39 @@
+identity:
+  name: "monitor_execution_get"
+  author: "querit-ai"
+  label:
+    en_US: "Get Execution"
+    zh_Hans: "获取执行详情"
+    pt_BR: "Obter Execução"
+    ja_JP: "実行詳細"
+description:
+  human:
+    en_US: "Get the details of a single execution, including the result events it produced."
+    zh_Hans: "获取单次执行的详情，包含其产生的结果事件。"
+  llm: "Get a single execution's details by monitor_id and execution_id, including events with result payloads."
+parameters:
+  - name: monitor_id
+    type: string
+    required: true
+    label:
+      en_US: "Monitor ID"
+      zh_Hans: "监控 ID"
+    human_description:
+      en_US: "The monitor id."
+      zh_Hans: "监控 ID。"
+    llm_description: "The monitor id (32-character hexadecimal string)."
+    form: llm
+  - name: execution_id
+    type: string
+    required: true
+    label:
+      en_US: "Execution ID"
+      zh_Hans: "执行 ID"
+    human_description:
+      en_US: "The execution id returned by trigger or the execution list."
+      zh_Hans: "由 trigger 或执行列表返回的执行 ID。"
+    llm_description: "The execution id (32-character hexadecimal string)."
+    form: llm
+extra:
+  python:
+    source: tools/monitor_execution_get.py

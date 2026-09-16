@@ -1,0 +1,40 @@
+identity:
+  name: "monitor_executions_recent"
+  author: "querit-ai"
+  label:
+    en_US: "Recent Executions"
+    zh_Hans: "最近执行结果"
+    pt_BR: "Execuções Recentes"
+    ja_JP: "最近の実行結果"
+description:
+  human:
+    en_US: "Fetch the most recent executions together with their result content. This is the main way to read a monitor's new results."
+    zh_Hans: "拉取最近若干次执行及其结果内容。这是读取监控新结果的主要方式。"
+  llm: "Fetch the most recent executions of a Querit monitor by monitor_id, in reverse chronological order, together with result content in events[].payload. This is the main endpoint for retrieving results."
+parameters:
+  - name: monitor_id
+    type: string
+    required: true
+    label:
+      en_US: "Monitor ID"
+      zh_Hans: "监控 ID"
+    human_description:
+      en_US: "The monitor id whose recent executions to fetch."
+      zh_Hans: "要拉取最近执行结果的监控 ID。"
+    llm_description: "The monitor id (32-character hexadecimal string)."
+    form: llm
+  - name: limit
+    type: number
+    required: false
+    default: 10
+    label:
+      en_US: "Limit"
+      zh_Hans: "返回数量"
+    human_description:
+      en_US: "How many recent executions to return, capped at 100."
+      zh_Hans: "返回最近的执行次数，最大 100。"
+    llm_description: "How many recent executions to return, max 100 (optional)."
+    form: llm
+extra:
+  python:
+    source: tools/monitor_executions_recent.py

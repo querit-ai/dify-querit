@@ -1,0 +1,87 @@
+identity:
+  name: "monitor_update"
+  author: "querit-ai"
+  label:
+    en_US: "Update Monitor"
+    zh_Hans: "更新监控"
+    pt_BR: "Atualizar Monitor"
+    ja_JP: "モニター更新"
+description:
+  human:
+    en_US: "Update a monitor's name, schedule interval or search query. Provide at least one field."
+    zh_Hans: "更新监控的名称、调度间隔或搜索查询。至少提供一个字段。"
+  llm: "Update a Querit monitor by monitor_id. Provide at least one of name / period / query. Note: the search object is replaced as a whole, so re-supply count if you want to keep it."
+parameters:
+  - name: monitor_id
+    type: string
+    required: true
+    label:
+      en_US: "Monitor ID"
+      zh_Hans: "监控 ID"
+    human_description:
+      en_US: "The monitor id to update."
+      zh_Hans: "要更新的监控 ID。"
+    llm_description: "The monitor id (32-character hexadecimal string)."
+    form: llm
+  - name: name
+    type: string
+    required: false
+    label:
+      en_US: "New Name"
+      zh_Hans: "新名称"
+    human_description:
+      en_US: "New monitor name."
+      zh_Hans: "监控的新名称。"
+    llm_description: "New monitor name (optional)."
+    form: llm
+  - name: period
+    type: select
+    required: false
+    options:
+      - value: "1h"
+        label: {en_US: "Every hour", zh_Hans: "每小时"}
+      - value: "2h"
+        label: {en_US: "Every 2 hours", zh_Hans: "每2小时"}
+      - value: "6h"
+        label: {en_US: "Every 6 hours", zh_Hans: "每6小时"}
+      - value: "12h"
+        label: {en_US: "Every 12 hours", zh_Hans: "每12小时"}
+      - value: "24h"
+        label: {en_US: "Every 24 hours", zh_Hans: "每24小时"}
+      - value: "1d"
+        label: {en_US: "Daily", zh_Hans: "每天"}
+      - value: "7d"
+        label: {en_US: "Weekly", zh_Hans: "每周"}
+    label:
+      en_US: "New Schedule Interval"
+      zh_Hans: "新调度间隔"
+    human_description:
+      en_US: "New schedule interval. Hourly 1h-24h, or 1d / 7d."
+      zh_Hans: "新的调度间隔。小时档 1h~24h，或 1d / 7d。"
+    llm_description: "New schedule interval: one of 1h, 2h, 6h, 12h, 24h, 1d, 7d (optional)."
+    form: llm
+  - name: query
+    type: string
+    required: false
+    label:
+      en_US: "New Search Query"
+      zh_Hans: "新搜索内容"
+    human_description:
+      en_US: "New search query. Replaces the whole search config."
+      zh_Hans: "新的搜索查询，会替换整个 search 配置。"
+    llm_description: "New search query (optional). Replaces the whole search object."
+    form: llm
+  - name: count
+    type: number
+    required: false
+    label:
+      en_US: "Result Count"
+      zh_Hans: "返回条数"
+    human_description:
+      en_US: "Result count to keep when replacing the search query."
+      zh_Hans: "替换搜索查询时要保留的返回条数。"
+    llm_description: "Result count, only used together with query (optional)."
+    form: llm
+extra:
+  python:
+    source: tools/monitor_update.py
