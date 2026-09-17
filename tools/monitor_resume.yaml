@@ -1,0 +1,28 @@
+identity:
+  name: "monitor_resume"
+  author: "querit-ai"
+  label:
+    en_US: "Resume Monitor"
+    zh_Hans: "恢复监控"
+    pt_BR: "Retomar Monitor"
+    ja_JP: "モニター再開"
+description:
+  human:
+    en_US: "Resume a paused monitor so it runs on schedule again."
+    zh_Hans: "恢复一个已暂停的监控，使其重新按计划执行。"
+  llm: "Resume a paused Querit monitor by monitor_id."
+parameters:
+  - name: monitor_id
+    type: string
+    required: true
+    label:
+      en_US: "Monitor ID"
+      zh_Hans: "监控 ID"
+    human_description:
+      en_US: "The monitor id to resume."
+      zh_Hans: "要恢复的监控 ID。"
+    llm_description: "The monitor id (32-character hexadecimal string)."
+    form: llm
+extra:
+  python:
+    source: tools/monitor_resume.py

@@ -1,0 +1,68 @@
+identity:
+  name: "monitor_list"
+  author: "querit-ai"
+  label:
+    en_US: "List Monitors"
+    zh_Hans: "监控列表"
+    pt_BR: "Listar Monitores"
+    ja_JP: "モニター一覧"
+description:
+  human:
+    en_US: "List your Querit monitors, optionally filtered by status or name, with pagination."
+    zh_Hans: "列出你的 Querit 监控，可按状态或名称过滤，并支持分页。"
+  llm: "List Querit monitors. Optional filters: status (active/paused), name (fuzzy match), page, page_size (max 100)."
+parameters:
+  - name: status
+    type: select
+    required: false
+    options:
+      - value: "active"
+        label: {en_US: "Active", zh_Hans: "运行中"}
+      - value: "paused"
+        label: {en_US: "Paused", zh_Hans: "已暂停"}
+    label:
+      en_US: "Status Filter"
+      zh_Hans: "状态过滤"
+    human_description:
+      en_US: "Only return monitors in this status."
+      zh_Hans: "仅返回该状态的监控。"
+    llm_description: "Filter by status: active or paused (optional)."
+    form: llm
+  - name: name
+    type: string
+    required: false
+    label:
+      en_US: "Name Filter"
+      zh_Hans: "名称过滤"
+    human_description:
+      en_US: "Fuzzy match on monitor name."
+      zh_Hans: "按监控名称模糊匹配。"
+    llm_description: "Fuzzy match on monitor name (optional)."
+    form: llm
+  - name: page
+    type: number
+    required: false
+    default: 1
+    label:
+      en_US: "Page"
+      zh_Hans: "页码"
+    human_description:
+      en_US: "Page number, starting at 1."
+      zh_Hans: "页码，从 1 开始。"
+    llm_description: "Page number, starting at 1 (optional)."
+    form: llm
+  - name: page_size
+    type: number
+    required: false
+    default: 20
+    label:
+      en_US: "Page Size"
+      zh_Hans: "每页条数"
+    human_description:
+      en_US: "Items per page, capped at 100."
+      zh_Hans: "每页条数，最大 100。"
+    llm_description: "Items per page, max 100 (optional)."
+    form: llm
+extra:
+  python:
+    source: tools/monitor_list.py

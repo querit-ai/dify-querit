@@ -1,0 +1,28 @@
+identity:
+  name: "monitor_trigger"
+  author: "querit-ai"
+  label:
+    en_US: "Trigger Monitor"
+    zh_Hans: "立即执行监控"
+    pt_BR: "Acionar Monitor"
+    ja_JP: "モニター手動実行"
+description:
+  human:
+    en_US: "Run a monitor once immediately. This performs a real search, takes a few seconds, consumes one search from your quota and updates the deduplication baseline."
+    zh_Hans: "立即执行一次监控。这会执行一次真实搜索，耗时数秒，消耗一次额度，并更新去重基线。"
+  llm: "Manually trigger a Querit monitor to run once now by monitor_id. Returns execution_id and new_results. new_results=0 can mean either no new results or a failed run; check the execution details to distinguish."
+parameters:
+  - name: monitor_id
+    type: string
+    required: true
+    label:
+      en_US: "Monitor ID"
+      zh_Hans: "监控 ID"
+    human_description:
+      en_US: "The monitor id to trigger."
+      zh_Hans: "要立即执行的监控 ID。"
+    llm_description: "The monitor id (32-character hexadecimal string)."
+    form: llm
+extra:
+  python:
+    source: tools/monitor_trigger.py

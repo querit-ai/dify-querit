@@ -1,0 +1,89 @@
+identity:
+  name: "monitor_create"
+  author: "querit-ai"
+  label:
+    en_US: "Create Monitor"
+    zh_Hans: "创建监控"
+    pt_BR: "Criar Monitor"
+    ja_JP: "モニター作成"
+description:
+  human:
+    en_US: "Create a scheduled Querit search monitor that runs a query repeatedly on an interval and returns only newly found results."
+    zh_Hans: "创建一个 Querit 定时搜索监控：按设定的时间间隔重复执行查询，并只返回新发现的结果。"
+  llm: "Create a Querit scheduled search monitor. Requires a name, a schedule period (1h/2h/6h/12h/24h/1d/7d) and a search query. Creation does not run immediately; the first run is at next_trigger_at. Use monitor_trigger to run it right away."
+parameters:
+  - name: name
+    type: string
+    required: true
+    label:
+      en_US: "Monitor Name"
+      zh_Hans: "监控名称"
+    human_description:
+      en_US: "A human-readable name for this monitor."
+      zh_Hans: "监控的可读名称。"
+    llm_description: "A descriptive name for the monitor."
+    form: llm
+  - name: query
+    type: string
+    required: true
+    label:
+      en_US: "Search Query"
+      zh_Hans: "搜索内容"
+    human_description:
+      en_US: "The search query to run on each execution."
+      zh_Hans: "每次执行时运行的搜索查询语句。"
+    llm_description: "The search query string; cannot be empty or all whitespace."
+    form: llm
+  - name: period
+    type: select
+    required: true
+    default: "1d"
+    options:
+      - value: "1h"
+        label: {en_US: "Every hour", zh_Hans: "每小时"}
+      - value: "2h"
+        label: {en_US: "Every 2 hours", zh_Hans: "每2小时"}
+      - value: "6h"
+        label: {en_US: "Every 6 hours", zh_Hans: "每6小时"}
+      - value: "12h"
+        label: {en_US: "Every 12 hours", zh_Hans: "每12小时"}
+      - value: "24h"
+        label: {en_US: "Every 24 hours", zh_Hans: "每24小时"}
+      - value: "1d"
+        label: {en_US: "Daily", zh_Hans: "每天"}
+      - value: "7d"
+        label: {en_US: "Weekly", zh_Hans: "每周"}
+    label:
+      en_US: "Schedule Interval"
+      zh_Hans: "调度间隔"
+    human_description:
+      en_US: "How often the monitor runs. Hourly values must be 1h-24h; day values must be 1d or 7d."
+      zh_Hans: "监控运行频率。小时档为 1h~24h，日档仅支持 1d 或 7d。"
+    llm_description: "Schedule interval. One of 1h, 2h, 6h, 12h, 24h, 1d, 7d. Minimum interval is 1 hour."
+    form: llm
+  - name: count
+    type: number
+    required: false
+    label:
+      en_US: "Result Count"
+      zh_Hans: "返回条数"
+    human_description:
+      en_US: "Maximum number of results per execution. Values above your plan limit are silently truncated."
+      zh_Hans: "每次执行返回的最大结果数。超过套餐上限的值会被静默截断。"
+    llm_description: "Maximum number of results returned per execution (optional)."
+    form: llm
+  - name: need_content
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: "Include Body Content"
+      zh_Hans: "包含正文内容"
+    human_description:
+      en_US: "Whether to return the page body text. Requires content extraction to be enabled on your account, otherwise it is silently ignored."
+      zh_Hans: "是否返回网页正文文本。需在账户上单独开通内容抽取能力，否则会被静默忽略。"
+    llm_description: "Whether to request page body text for each result (optional; requires separate activation)."
+    form: llm
+extra:
+  python:
+    source: tools/monitor_create.py

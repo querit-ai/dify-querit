@@ -1,0 +1,28 @@
+identity:
+  name: "monitor_delete"
+  author: "querit-ai"
+  label:
+    en_US: "Delete Monitor"
+    zh_Hans: "删除监控"
+    pt_BR: "Excluir Monitor"
+    ja_JP: "モニター削除"
+description:
+  human:
+    en_US: "Delete a monitor. This cannot be undone."
+    zh_Hans: "删除一个监控。此操作不可撤销。"
+  llm: "Delete a Querit monitor by monitor_id. This is irreversible."
+parameters:
+  - name: monitor_id
+    type: string
+    required: true
+    label:
+      en_US: "Monitor ID"
+      zh_Hans: "监控 ID"
+    human_description:
+      en_US: "The monitor id to delete."
+      zh_Hans: "要删除的监控 ID。"
+    llm_description: "The monitor id (32-character hexadecimal string)."
+    form: llm
+extra:
+  python:
+    source: tools/monitor_delete.py

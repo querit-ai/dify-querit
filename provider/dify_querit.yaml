@@ -87,6 +87,17 @@ credentials_for_provider: #Add credentials_for_provider field
 
 tools:
   - tools/dify_querit.yaml
+  - tools/monitor_create.yaml
+  - tools/monitor_list.yaml
+  - tools/monitor_get.yaml
+  - tools/monitor_update.yaml
+  - tools/monitor_delete.yaml
+  - tools/monitor_pause.yaml
+  - tools/monitor_resume.yaml
+  - tools/monitor_trigger.yaml
+  - tools/monitor_executions.yaml
+  - tools/monitor_execution_get.yaml
+  - tools/monitor_executions_recent.yaml
 extra:
   python:
     source: provider/dify_querit.py
