@@ -1,6 +1,7 @@
 version: 0.0.7
 type: plugin
 author: querit-ai
+contact: support@querit.ai
 name: querit
 label:
   en_US: "Querit Search Plugin"
